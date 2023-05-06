@@ -10,13 +10,10 @@ import org.springframework.web.bind.annotation.RestController;
 import java.time.LocalDate;
 
 @RestController
-@RequestMapping
-@Tag(name = "Project Information: Sock Warehouse")
+@Tag(name = "Project: Sock Warehouse", description = "information of application")
 public class FirstController {
-    @GetMapping
-    public String helloWeb() { return "helloWeb";}
 
-    @GetMapping("/info")
+    @GetMapping("/")
     @Operation(summary = "project data")
     public String Info() {
         String name = "Enikeeva Elvira";

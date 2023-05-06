@@ -1,0 +1,21 @@
+GET http://localhost:8080
+###
+
+POST http://localhost:8080/sock
+Content-Type: application/json
+
+{
+  "size": 45,
+  "color": "WHITE",
+  "cottonPercentage": 50,
+  "quantity": 25
+}
+###
+PUT http://localhost:8080/sock
+
+
+####
+#GET
+#
+####
+#DELETE
