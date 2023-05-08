@@ -8,14 +8,41 @@ Content-Type: application/json
   "size": 45,
   "color": "WHITE",
   "cottonPercentage": 50,
-  "quantity": 25
+  "quantity": 200
 }
+
+###
+POST http://localhost:8080/sock
+Content-Type: application/json
+
+  {"size": 45,
+    "color": "RED",
+    "cottonPercentage": 80,
+    "quantity": 100
+  }
+
 ###
 PUT http://localhost:8080/sock
+Content-Type: application/json
+
+{
+  "size": 45,
+  "color": "WHITE",
+  "cottonPercentage": 50,
+  "quantity": 5
+}
+
+###
+GET http://localhost:8080/sock
 
 
-####
-#GET
-#
-####
-#DELETE
+###
+DELETE http://localhost:8080/sock
+Content-Type: application/json
+
+{
+  "size": 41,
+  "color": "WHITE",
+  "cottonPercentage": 50,
+  "quantity": 3
+}

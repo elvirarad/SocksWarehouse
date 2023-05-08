@@ -1,5 +1,7 @@
 package me.elvira.sockswarehouseapp.services;
 
+import me.elvira.sockswarehouseapp.exception.InSufficientSockQuantityException;
+import me.elvira.sockswarehouseapp.exception.InvalidSockRequestException;
 import me.elvira.sockswarehouseapp.model.Color;
 import me.elvira.sockswarehouseapp.model.Size;
 import me.elvira.sockswarehouseapp.model.Sock;
@@ -40,7 +42,7 @@ public class SockService {
         if (sockQuantity <= sockDto.getQuantity()){
             socks.put(sock, sockQuantity - sockDto.getQuantity());
         } else {
-            throw new IllegalArgumentException("There is not socks or not enough socks");
+            throw new InSufficientSockQuantityException("There is not socks or not enough socks");
         }
 //        if (isIssue){
 //            auditService.recordIssuanceOperation(sock, sockDto.getQuantity());
@@ -72,13 +74,13 @@ public class SockService {
 
     private void validateRequest(SockDto sockDto){
         if (sockDto.getColor() == null || sockDto.getSize() == null){
-            throw new IllegalArgumentException("All fields should be filled");
+            throw new InvalidSockRequestException("All fields should be filled");
         }
         if (sockDto.getCottonPercentage() < 0 || sockDto.getCottonPercentage() > 100){
-            throw new IllegalArgumentException("Cotton percent should be > 0 and < 100");
+            throw new InvalidSockRequestException("Cotton percent should be > 0 and < 100");
         }
         if (sockDto.getQuantity() <= 0){
-            throw new IllegalArgumentException("Quantity should be more than 0");
+            throw new InvalidSockRequestException("Quantity should be more than 0");
         }
     }
 

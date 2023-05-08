@@ -3,6 +3,7 @@ package me.elvira.sockswarehouseapp.controllers;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import me.elvira.sockswarehouseapp.exception.InSufficientSockQuantityException;
 import me.elvira.sockswarehouseapp.model.Color;
 import me.elvira.sockswarehouseapp.model.Size;
 import me.elvira.sockswarehouseapp.model.SockDto;
@@ -21,6 +22,12 @@ public class SockController {
 
     public SockController(SockService sockService) {
         this.sockService = sockService;
+    }
+
+    @ExceptionHandler(InSufficientSockQuantityException.class)
+    public ResponseEntity<String> handleInvalidException
+            (InSufficientSockQuantityException invalidSockRequestException){
+        return ResponseEntity.badRequest().body(invalidSockRequestException.getMessage());
     }
 
     @PostMapping
