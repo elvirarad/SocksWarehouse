@@ -1,29 +1,29 @@
 package me.elvira.sockswarehouseapp.model;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+
 public enum Size {
-    SIZE36 (36),
-    SIZE37 (37),
-    SIZE38 (38),
-    SIZE39 (39),
-    SIZE40 (40),
-    SIZE41 (41),
-    SIZE42 (42),
-    SIZE43 (43),
-    SIZE44 (44),
-    SIZE45 (45);
+    XS (32),
+    S (35),
+    M (38),
+    L (41),
+    XL (45);
 
-    private final int size;
+    private final int maxSize;
 
-    Size(int size) {
-        this.size = size;
+    Size(int maxSize) {
+        this.maxSize = maxSize;
     }
 
-    public int getSize() {
-        return size;
+    @JsonCreator
+    public static Size convertSize(int value){
+        for (Size size : Size.values()) {
+            if (value == size.maxSize){
+                return size;
+            }
+        }
+        throw new RuntimeException("No such size");
     }
 
-    @Override
-    public String toString() {
-        return "size=" + size;
-    }
+
 }
